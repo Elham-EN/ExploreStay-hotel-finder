@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
+import { port } from "./constants";
+import connectDatabase from "./config/database";
 
 const app = express();
 
@@ -9,10 +11,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.get("/api/test", async (req: Request, res: Response) => {
-  res;
+  res.json({ message: "This just for testing" });
 });
 
-const port = process.env.PORT || 70001;
-app.listen(port, () => {
-  console.log(`The server is listening to localhost:${port}`);
-});
+// Connect to the database and then start the server
+connectDatabase()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Server listening on port ${port}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Database connection failed", error);
+    process.exit(1);
+  });

@@ -1,8 +1,9 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import cors from "cors";
 import "dotenv/config";
 import { port } from "./constants";
 import connectDatabase from "./config/database";
+import userRouter from "./routes/users.route";
 
 const app = express();
 
@@ -10,9 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.get("/api/test", async (req: Request, res: Response) => {
-  res.json({ message: "This just for testing" });
-});
+app.use("/api/users", userRouter);
 
 // Connect to the database and then start the server
 connectDatabase()

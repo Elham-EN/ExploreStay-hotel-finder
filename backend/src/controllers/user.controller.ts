@@ -31,7 +31,7 @@ export async function registerUser(req: Request, res: Response) {
       httpOnly: true, // can only be access on the server
       // only accept cookie over https (production)
       secure: nodeEnv === "production",
-      maxAge: 8640000, // in millisecond for 1 day
+      maxAge: 86400000, // in millisecond for 1 day
     });
     res.sendStatus(200);
   } catch (error) {

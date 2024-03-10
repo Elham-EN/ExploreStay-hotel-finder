@@ -1,6 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import RegisterFormData from "../types/RegisterUser";
+import { useMutation } from "@tanstack/react-query";
+import * as apiClient from "../api-client";
 
 export default function Register(): React.ReactElement {
   const {
@@ -10,8 +12,21 @@ export default function Register(): React.ReactElement {
     formState: { errors },
   } = useForm<RegisterFormData>();
 
+  //  mutations are typically used to create data or perform server side-effects.
+  const mutation = useMutation({
+    mutationFn: (newData: RegisterFormData) => {
+      return apiClient.registerUser(newData);
+    },
+    onSuccess: () => {
+      console.log("User registered successfully");
+    },
+    onError: (error: Error) => {
+      console.log(error.message);
+    },
+  });
+
   const onSubmit = handleSubmit((data: RegisterFormData) => {
-    console.log(data);
+    mutation.mutate(data);
   });
 
   return (

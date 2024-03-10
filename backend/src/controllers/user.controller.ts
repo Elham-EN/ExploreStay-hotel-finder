@@ -33,7 +33,7 @@ export async function registerUser(req: Request, res: Response) {
       secure: nodeEnv === "production",
       maxAge: 86400000, // in millisecond for 1 day
     });
-    res.sendStatus(200);
+    res.status(200).send({ message: "user registered OK" });
   } catch (error) {
     // Something went wrong with server
     res.status(500).send({ message: "Something with wrong" });

@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import RegisterFormData from "../types/RegisterUser";
 import { useMutation } from "@tanstack/react-query";
 import * as apiClient from "../api-client";
+import { useAppContext } from "../contexts/AppContext";
 
 export default function Register(): React.ReactElement {
+  const { showToast } = useAppContext();
   const {
     register,
     watch,
@@ -18,10 +20,10 @@ export default function Register(): React.ReactElement {
       return apiClient.registerUser(newData);
     },
     onSuccess: () => {
-      console.log("User registered successfully");
+      showToast({ message: "User registered successfully", type: "SUCCESS" });
     },
     onError: (error: Error) => {
-      console.log(error.message);
+      showToast({ message: error.message, type: "ERROR" });
     },
   });
 

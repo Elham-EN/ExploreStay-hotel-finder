@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
-import { port } from "./constants";
+import { frontendUrl, port } from "./constants";
 import connectDatabase from "./config/database";
 import userRouter from "./routes/users.route";
 import authRouter from "./routes/auth.route";
@@ -11,7 +11,14 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+// Allow Server to only accept request from this url only & it must
+// include the credential that is the http cookie in the request
+app.use(
+  cors({
+    origin: frontendUrl,
+    credentials: true,
+  })
+);
 
 app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);

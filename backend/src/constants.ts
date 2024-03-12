@@ -8,3 +8,5 @@ export const nodeEnv = process.env.NODE_ENV as string;
 
 export const mongoConnectionStringTest = process.env
   .MONGO_CONNECTION_STRING_TEST as string;
+
+export const frontendUrl = process.env.FRONTEND_URL as string;

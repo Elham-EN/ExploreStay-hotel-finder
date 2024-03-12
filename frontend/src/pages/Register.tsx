@@ -4,8 +4,10 @@ import RegisterFormData from "../types/RegisterUser";
 import { useMutation } from "@tanstack/react-query";
 import * as apiClient from "../api-client";
 import { useAppContext } from "../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Register(): React.ReactElement {
+  const navigate = useNavigate();
   const { showToast } = useAppContext();
   const {
     register,
@@ -21,6 +23,7 @@ export default function Register(): React.ReactElement {
     },
     onSuccess: () => {
       showToast({ message: "User registered successfully", type: "SUCCESS" });
+      navigate("/");
     },
     onError: (error: Error) => {
       showToast({ message: error.message, type: "ERROR" });

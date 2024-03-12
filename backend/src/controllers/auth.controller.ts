@@ -35,3 +35,7 @@ export async function loginUser(req: Request, res: Response) {
     res.status(500).json({ message: "Something wrong with server" });
   }
 }
+
+export async function sendUserId(req: Request, res: Response) {
+  res.status(200).send({ userId: req.userId });
+}

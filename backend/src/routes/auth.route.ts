@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import { check, validationResult } from "express-validator";
-import { loginUser } from "../controllers/auth.controller";
+import { loginUser, sendUserId } from "../controllers/auth.controller";
+import verifyToken from "../middlewares/auth";
 
 const authRouter = express.Router();
 
@@ -19,5 +20,11 @@ authRouter.post(
   ],
   loginUser
 );
+/**
+ * When making request to validate token, it first run the middleware function
+ * to check the http'scookie which was sent by the client in the request. Once
+ * it pass the validation in the middleware, then forward the request to the handler
+ */
+authRouter.get("/validate-token", verifyToken, sendUserId);
 
 export default authRouter;

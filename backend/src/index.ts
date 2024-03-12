@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import "dotenv/config";
 import { frontendUrl, port } from "./constants";
 import connectDatabase from "./config/database";
@@ -9,6 +10,7 @@ import { mongoConnectionString } from "./constants";
 
 const app = express();
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Allow Server to only accept request from this url only & it must

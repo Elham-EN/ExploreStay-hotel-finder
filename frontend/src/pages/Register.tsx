@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import RegisterFormData from "../types/RegisterUser";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as apiClient from "../api-client";
 import { useAppContext } from "../contexts/AppContext";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Register(): React.ReactElement {
   const navigate = useNavigate();
   const { showToast } = useAppContext();
+  const queryClient = useQueryClient();
   const {
     register,
     watch,
@@ -24,6 +25,7 @@ export default function Register(): React.ReactElement {
     onSuccess: () => {
       showToast({ message: "User registered successfully", type: "SUCCESS" });
       navigate("/");
+      queryClient.invalidateQueries({ queryKey: ["validate-token"] });
     },
     onError: (error: Error) => {
       showToast({ message: error.message, type: "ERROR" });

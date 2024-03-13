@@ -11,7 +11,7 @@ export default function Toast({ message, type, onClose }: ToastProps): ReactElem
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
-    }, 5000);
+    }, 3000);
     return () => {
       // Reset the timer, whenever the component is closed
       clearTimeout(timer);

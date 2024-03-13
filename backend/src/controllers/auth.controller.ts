@@ -39,3 +39,9 @@ export async function loginUser(req: Request, res: Response) {
 export async function sendUserId(req: Request, res: Response) {
   res.status(200).send({ userId: req.userId });
 }
+
+export async function logout(req: Request, res: Response) {
+  // Create empty token
+  res.cookie("auth_token", "", { expires: new Date(0) });
+  res.send();
+}

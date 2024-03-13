@@ -44,3 +44,13 @@ export async function validateToken() {
   }
   return response.json();
 }
+
+export async function signOut() {
+  const response = await fetch(`${API_BASE_URL}/api/auth/logout`, {
+    credentials: "include",
+    method: "POST",
+  });
+  if (!response.ok) {
+    throw new Error("Error during signOut");
+  }
+}

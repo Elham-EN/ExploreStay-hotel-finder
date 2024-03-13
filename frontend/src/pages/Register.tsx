@@ -4,7 +4,7 @@ import RegisterFormData from "../types/RegisterUser";
 import { useMutation } from "@tanstack/react-query";
 import * as apiClient from "../api-client";
 import { useAppContext } from "../contexts/AppContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register(): React.ReactElement {
   const navigate = useNavigate();
@@ -101,15 +101,19 @@ export default function Register(): React.ReactElement {
         )}
       </label>
 
-      <span className="">
-        <button
-          type="submit"
-          className="bg-blue-600 text-white p-3 rounded font-bold 
+      <button
+        type="submit"
+        className="bg-blue-600 text-white p-3 rounded font-bold 
             hover:bg-blue-500 text-xl"
-        >
-          Create Account
-        </button>
-      </span>
+      >
+        Create Account
+      </button>
+      <p className="mt-10">
+        Already have an Account?{" "}
+        <span className="font-semibold text-blue-800">
+          <Link to={"/sign-in"}>Sign in here</Link>
+        </span>
+      </p>
     </form>
   );
 }

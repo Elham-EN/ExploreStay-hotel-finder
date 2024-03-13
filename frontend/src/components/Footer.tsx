@@ -9,7 +9,7 @@ export default function Footer(): React.ReactElement {
         </span>
         <span className="text-white font-bold tracking-tight flex-gap-4 space-y-5">
           <p className=" cursor-pointer">Privacy Policy</p>
-          <p className=" cursor-pointer">Terms of Servic</p>
+          <p className=" cursor-pointer">Terms of Service</p>
         </span>
       </div>
     </div>

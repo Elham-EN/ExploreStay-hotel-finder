@@ -21,12 +21,12 @@ export default function Login(): React.ReactElement {
     mutationFn: (newData: LoginFormData) => {
       return apiClient.loginUser(newData);
     },
-    onSuccess: () => {
+    onSuccess: async () => {
       showToast({ message: "Sign in Succcessfull", type: "SUCCESS" });
       navigate("/");
       // instructing React Query to mark the validate-token query as invalid
       // and refetch toaken validation
-      queryClient.invalidateQueries({ queryKey: ["validate-token"] });
+      await queryClient.invalidateQueries({ queryKey: ["validate-token"] });
     },
     onError: (error: Error) => {
       showToast({ message: error.message, type: "ERROR" });

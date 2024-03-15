@@ -8,9 +8,9 @@ export default function SignOutBtn(): React.ReactElement {
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: () => apiClient.signOut(),
-    onSuccess: () => {
+    onSuccess: async () => {
       showToast({ message: "Signed Out!", type: "SUCCESS" });
-      queryClient.invalidateQueries({ queryKey: ["validate-token"] });
+      await queryClient.invalidateQueries({ queryKey: ["validate-token"] });
     },
     onError: (error: Error) => {
       showToast({ message: error.message, type: "ERROR" });

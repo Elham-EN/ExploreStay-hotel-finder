@@ -22,10 +22,10 @@ export default function Register(): React.ReactElement {
     mutationFn: (newData: RegisterFormData) => {
       return apiClient.registerUser(newData);
     },
-    onSuccess: () => {
+    onSuccess: async () => {
       showToast({ message: "User registered successfully", type: "SUCCESS" });
       navigate("/");
-      queryClient.invalidateQueries({ queryKey: ["validate-token"] });
+      await queryClient.invalidateQueries({ queryKey: ["validate-token"] });
     },
     onError: (error: Error) => {
       showToast({ message: error.message, type: "ERROR" });

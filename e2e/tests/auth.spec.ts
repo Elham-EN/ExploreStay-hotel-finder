@@ -18,6 +18,7 @@ test("should allow the user to sign in", async function ({ page }) {
 });
 
 test("should allow the user to register", async function ({ page }) {
+  const testEmail = `test_register_${Math.floor(Math.random() * 90000) + 10000}@test.com`;
   await page.goto(FRONTEND_URL);
   // Get the sign in button
   await page.getByRole("link", { name: "Sign In" }).click();
@@ -30,7 +31,7 @@ test("should allow the user to register", async function ({ page }) {
   // Provide form input data
   await page.locator("[name=firstname]").fill("larry");
   await page.locator("[name=lastname]").fill("page");
-  await page.locator("[name=email]").fill("larry@hotmail.com");
+  await page.locator("[name=email]").fill(testEmail);
   await page.locator("[name=password]").fill("soran123");
   await page.locator("[name=confirmPassword]").fill("soran123");
   // Click the button to sign up the account

@@ -65,7 +65,7 @@ export default function Login(): React.ReactElement {
         className="bg-blue-600 text-white p-3 rounded font-bold 
             hover:bg-blue-500 text-xl"
       >
-        Login
+        {!mutation.isPending ? "Login" : "Loading"}
       </button>
       <p className="mt-10">
         Don't have an Account?{" "}

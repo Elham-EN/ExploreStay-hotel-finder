@@ -23,7 +23,7 @@ app.use(
   })
 );
 
-// Make frontend be part of the backend rather than it's own server
+// Make frontend be part of the backend rather than it's own server |
 app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 app.use("/api/users", userRouter);

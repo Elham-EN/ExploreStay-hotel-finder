@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "nodemon --watch src --ext ts --exec ts-node src/index.ts",
-    "build": "tsc",
+    "build": "npm install & tsc",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "e2e": "cross-env DOTENV_CONFIG_PATH=.env.e2e nodemon --watch src --ext ts --exec ts-node src/index.ts"

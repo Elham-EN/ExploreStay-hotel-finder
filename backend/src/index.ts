@@ -7,6 +7,7 @@ import connectDatabase from "./config/database";
 import userRouter from "./routes/users.route";
 import authRouter from "./routes/auth.route";
 import { mongoConnectionString } from "./constants";
+import path from "path";
 
 const app = express();
 
@@ -21,6 +22,9 @@ app.use(
     credentials: true,
   })
 );
+
+// Make frontend be part of the backend rather than it's own server
+app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);

@@ -32,7 +32,7 @@ app.use("/api/auth", authRouter);
 // Connect to the database and then start the server
 connectDatabase(mongoConnectionString)
   .then(() => {
-    app.listen(port, () => {
+    app.listen(7000, () => {
       console.log(`Server listening on port ${port}`);
     });
   })

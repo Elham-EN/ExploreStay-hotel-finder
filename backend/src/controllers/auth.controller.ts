@@ -25,7 +25,7 @@ export async function loginUser(req: Request, res: Response) {
     const token = jwt.sign({ userId: user.id }, jwtSecretKey, { expiresIn: "1d" });
     res.cookie("auth_token", token, {
       httpOnly: true,
-      secure: nodeEnv === "production",
+      secure: true, //nodeEnv === "production",
       maxAge: 86400000,
     });
     // convenience thing for the frontend client, they userId

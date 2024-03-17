@@ -5,7 +5,7 @@
   "main": "./src/index.ts",
   "scripts": {
     "start": "node ./dist/index.js",
-    "build": "npm install & npm typescript",
+    "build": "npm install & npm tsc",
     "dev": "nodemon --watch src --ext ts --exec ts-node src/index.ts",
     "test": "jest",
     "test:watch": "jest --watchAll",

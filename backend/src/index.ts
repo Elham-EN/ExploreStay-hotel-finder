@@ -8,6 +8,7 @@ import userRouter from "./routes/users.route";
 import authRouter from "./routes/auth.route";
 import { mongoConnectionString } from "./constants";
 import path from "path";
+import { connectCloudinary } from "./config/cloudinaryStorage";
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use("/api/auth", authRouter);
 // Connect to the database and then start the server
 connectDatabase(mongoConnectionString)
   .then(() => {
+    connectCloudinary();
     app.listen(7000, () => {
       console.log(`Server listening on port ${port}`);
     });
